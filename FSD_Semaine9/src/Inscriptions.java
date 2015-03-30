@@ -1,18 +1,25 @@
+import java.util.HashSet;
+import java.util.LinkedList;
+
 
 public class Inscriptions {
 	
-	// A COMPLETER
-	
+	private HashSet<Etudiant> etudiantInscrits;
+	private HashSet<Etudiant> etudiantsEnAttente;
+	private LinkedList<Etudiant> fileDAttente; 
+	private int nbMaxInscrits;
 	
 	// nombreMax est le maximum d'inscrits autorise dans le groupe de conversation
 	public Inscriptions(int nombreMax){
-		// A COMPLETER
+		this.etudiantInscrits = new HashSet<Etudiant>(nombreMax);
+		this.etudiantsEnAttente = new HashSet<Etudiant>();
+		this.fileDAttente = new LinkedList<Etudiant>();
+		this.nbMaxInscrits = nombreMax;
 	}
 	
 	// renvoie le nombre d'inscrits, c-a-d le nombre d'etudiant faisant partie du groupe de conversation
 	public int nombreIscrits(){
-		// A COMPLETER
-		return 0;
+		return etudiantInscrits.size();
 	}
 	// verifie si l'etudiant fait partie du groupe de conversation
 	public boolean estInscrit(Etudiant etudiant){
