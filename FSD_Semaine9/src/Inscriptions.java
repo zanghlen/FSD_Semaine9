@@ -24,7 +24,7 @@ public class Inscriptions {
 	// verifie si l'etudiant fait partie du groupe de conversation
 	public boolean estInscrit(Etudiant etudiant){
 		// A COMPLETER
-		return false;
+		return etudiantInscrits.contains(etudiant);
 	}
 	
 	// verifie si l'etudiant se trouve dans la liste d'attente
