@@ -54,8 +54,10 @@ public class Inscriptions {
 
 	// il ne faut pas verifier si l'etudiant est deja present
 	public void mettreEnAttente(Etudiant etudiant){
-		fileDAttente.addLast(etudiant);
-		etudiantsEnAttente.add(etudiant);
+		if (etudiantsEnAttente.add(etudiant)) {
+			fileDAttente.addLast(etudiant);
+		}
+		
 	}
 	
 	//TODO terminer la methode 
@@ -74,6 +76,7 @@ public class Inscriptions {
 		
 		if (placeRestanteInscrits()) {
 			retirerFileAttente(toRemove);
+			inscrire(toRemove);
 			return toRemove;
 		} else if (placeRestanteInscrits()) {
 			 mettreEnAttente(toRemove);
@@ -90,7 +93,7 @@ public class Inscriptions {
 	// renvoie false si l'etudiant n'est pas en attente
 	public boolean retirerFileAttente(Etudiant etudiant){
 		// A COMPLETER
-		return fileDAttente.remove(etudiant);
+		return etudiantsEnAttente.remove(etudiant);
 	}
 	
 	@Override
@@ -103,11 +106,13 @@ public class Inscriptions {
 			toReturn += "\n" + etudiant.toString();
 		}
 		
-		toReturn += "--- Gens en attente ---";
+		toReturn += "\n--- Gens en attente ---";
 		for (Iterator<Etudiant> iterator = etudiantsEnAttente.iterator(); iterator
 				.hasNext();) {
 			Etudiant etudiant = (Etudiant) iterator.next();
-			toReturn += "\n" + etudiant.toString();
+			if (etudiantsEnAttente.contains(etudiant)) {
+				toReturn += "\n" + etudiant.toString();
+			}
 			
 		}
 		return toReturn;
