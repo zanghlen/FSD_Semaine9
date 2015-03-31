@@ -96,7 +96,7 @@ public class RegistreIncriptions {
 		
 		Etudiant et = inscriptions.attribuerPlace(niveau.getIndice());
 		// TODO Auto-generated method stub
-		if (et == null) {
+		if (et == null) { 
 			System.out.println("l'attribution n'a pas pu se faire !");
 		} else {
 			System.out.println("l'attribution de place a ete faite !");

@@ -14,7 +14,7 @@ public class Inscriptions {
 	// nombreMax est le maximum d'inscrits autorise dans le groupe de conversation
 	public Inscriptions(int nombreMax){
 		this.etudiantsInscrits = new HashSet[nbNiveaux];
-		this.etudiantsEnAttente= new HashSet[nbNiveaux];
+		this.etudiantsEnAttente= new HashSet[nbNiveaux]; 
 		this.fileDAttente = new LinkedList[nbNiveaux];
 		this.nbMaxInscrits = nombreMax;
 		for (int indice = 0 ; indice < Niveau.values().length ; indice++) {
