@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 
@@ -74,6 +75,8 @@ public class Inscriptions {
 		if (placeRestanteInscrits()) {
 			retirerFileAttente(toRemove);
 			return toRemove;
+		} else if (placeRestanteInscrits()) {
+			 mettreEnAttente(toRemove);
 		}
 		return null;
 	}
@@ -88,6 +91,26 @@ public class Inscriptions {
 	public boolean retirerFileAttente(Etudiant etudiant){
 		// A COMPLETER
 		return fileDAttente.remove(etudiant);
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String toReturn = "--- Gens Inscrits ---";
+		for (Iterator<Etudiant> iterator = etudiantInscrits.iterator(); iterator
+				.hasNext();) {
+			Etudiant etudiant = (Etudiant) iterator.next();
+			toReturn += "\n" + etudiant.toString();
+		}
+		
+		toReturn += "--- Gens en attente ---";
+		for (Iterator<Etudiant> iterator = etudiantsEnAttente.iterator(); iterator
+				.hasNext();) {
+			Etudiant etudiant = (Etudiant) iterator.next();
+			toReturn += "\n" + etudiant.toString();
+			
+		}
+		return toReturn;
 	}
 
 }

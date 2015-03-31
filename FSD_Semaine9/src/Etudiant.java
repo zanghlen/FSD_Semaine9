@@ -20,6 +20,11 @@ public class Etudiant {
 	}
 
 	@Override
+	public String toString() {
+		return "Etudiant [nom=" + nom + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
