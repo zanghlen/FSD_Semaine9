@@ -1,10 +1,17 @@
 
 public class Etudiant {
-	private String nom ;
 
-	public Etudiant(String nom) {
+	private String nom ;
+	private Inscriptions.Niveau niveau ; 
+
+	public Inscriptions.Niveau getNiveau() {
+		return niveau;
+	}
+
+	public Etudiant(String nom, Inscriptions.Niveau niveau) {
 		super();
 		this.nom = nom;
+		this.niveau = niveau;
 	}
 
 	public String getNom() {
@@ -15,6 +22,7 @@ public class Etudiant {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((niveau == null) ? 0 : niveau.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
@@ -33,6 +41,8 @@ public class Etudiant {
 		if (getClass() != obj.getClass())
 			return false;
 		Etudiant other = (Etudiant) obj;
+		if (niveau != other.niveau)
+			return false;
 		if (nom == null) {
 			if (other.nom != null)
 				return false;
@@ -41,5 +51,7 @@ public class Etudiant {
 		return true;
 	} 
 	
+	
+
 	
 }

@@ -69,18 +69,31 @@ public class RegistreIncriptions {
 	}
 	private static void retirerEtudiantEnAttente() {
 		// TODO Auto-generated method stub
+		Etudiant et = nouvelEtudiant();
+		if (inscriptions.retirerFileAttente(et)) {
+			System.out.println("l'etudiant a ete retire de la file d'attente !");
+		} else {
+			System.out.println("l'etudiant n'a pas ete retire !");
+		}
 
 	}
 	private static void attribuerPlace() {
 		// TODO Auto-generated method stub
+		Etudiant et = inscriptions.attribuerPlace();
+		if (et == null) {
+			System.out.println("l'attribution n'a pas pu se faire !");
+		} else {
+			System.out.println("l'attribution de place a ete faite !");
+		}
 
 	}
 	private static void mettreEnAttente() {
 		// TODO Auto-generated method stub
-
+		Etudiant et = nouvelEtudiant();
+		inscriptions.mettreEnAttente(et);
+		System.out.println("l'etudiant a ete mis en attente s'il ne l'etait pas deja ");
 	}
 	private static void desinscrireUnEtudiant() {
-		// TODO Auto-generated method stub
 		Etudiant et = nouvelEtudiant();
 		if (inscriptions.desinscrire(et)) {
 			System.out.println("l'etudiant a ete desinscrit avec succés !");
@@ -91,7 +104,6 @@ public class RegistreIncriptions {
 	}
 	
 	private static void inscrireUnEtudiant() {
-		// TODO Auto-generated method stub
 		Etudiant et = nouvelEtudiant();
 		if (inscriptions.inscrire(et)) {
 			System.out.println("l'etudiant a ete inscrit avec succés !");
@@ -102,7 +114,6 @@ public class RegistreIncriptions {
 
 	}
 	private static void estEnAttente() {
-		// TODO Auto-generated method stub
 		Etudiant et = nouvelEtudiant();
 		boolean estInscrit = inscriptions.estEnAttente(et); 
 		if(estInscrit){
@@ -113,7 +124,6 @@ public class RegistreIncriptions {
 
 	}
 	private static void estInscrit() {
-		// TODO Auto-generated method stub
 		Etudiant et = nouvelEtudiant();
 		boolean estInscrit = inscriptions.estInscrit(et); 
 		if(estInscrit){
@@ -126,11 +136,32 @@ public class RegistreIncriptions {
 	private static Etudiant nouvelEtudiant() {
 		System.out.println("Pourriez vous introduire le nom de l'etudiant voulu ?");
 		String nom = sc.next();
-		Etudiant etudiant = new Etudiant(nom);
+		System.out.println("Son niveau aussi ?");
+		System.out.println("Voici le choix possible :");
+		System.out.println("1 - Debutant \n2 - Intermediaire\n3 - Expert");
+		int choix = sc.nextInt();
+		Inscriptions.Niveau niveau = null ; 
+		switch (choix) {
+		case 1:
+			niveau = Inscriptions.Niveau.DEBUTANT;
+			break;
+		case 2:
+			niveau = Inscriptions.Niveau.INTERMEDIAIRE;
+			break;
+		case 3:
+			niveau = Inscriptions.Niveau.EXPERT;
+			break;
+
+		default:
+			break;
+		}
+		Etudiant etudiant = new Etudiant(nom,niveau);
 		return etudiant ; 
 	}
 	private static void nombreInscrits() {
-		System.out.println("Il y a actuellement " + inscriptions.nombreIscrits() + " etudiants inscrits ");
+		for (Inscriptions.Niveau n : Inscriptions.Niveau.values()) {
+			System.out.println("Il y a actuellement " + inscriptions.nombreIscrits(n.getIndice()) + " etudiants inscrits en niveau " + n );
+		}
 	}
 
 }
