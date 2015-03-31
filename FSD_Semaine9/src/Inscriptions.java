@@ -16,6 +16,7 @@ public class Inscriptions {
 		this.etudiantsInscrits = new HashSet[nbNiveaux];
 		this.etudiantsEnAttente= new HashSet[nbNiveaux];
 		this.fileDAttente = new LinkedList[nbNiveaux];
+		this.nbMaxInscrits = nombreMax;
 		for (int indice = 0 ; indice < Niveau.values().length ; indice++) {
 			etudiantsEnAttente[indice] = new HashSet<Etudiant>(nombreMax);
 			etudiantsInscrits[indice] = new HashSet<Etudiant>(nombreMax);
@@ -28,6 +29,7 @@ public class Inscriptions {
 	public int nombreIscrits(int niveau){
 		return etudiantsInscrits[niveau].size();
 	}
+	
 	// verifie si l'etudiant fait partie du groupe de conversation
 	public boolean estInscrit(Etudiant etudiant){
 		int indiceNiveau = etudiant.getNiveau().getIndice();
@@ -43,7 +45,6 @@ public class Inscriptions {
 	// renvoie false si plus de place
 	// il ne faut pas verifier si l'etudiant est deja present
 	public boolean inscrire(Etudiant etudiant){ 
-
 		// il reste de la place pour une inscription
 		if ( placeRestanteInscrits(etudiant.getNiveau().getIndice()) ) {
 			return etudiantsInscrits[etudiant.getNiveau().getIndice()].add(etudiant);
@@ -102,6 +103,29 @@ public class Inscriptions {
 	public boolean retirerFileAttente(Etudiant etudiant){
 		// A COMPLETER
 		return etudiantsEnAttente[etudiant.getNiveau().getIndice()].remove(etudiant);
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		System.out.println( "   ---   LISTE DE PERSONNES INSCRITES   ---");
+		for (Niveau n : Niveau.values()) {
+			System.out.println("\n   ---"+n+"---");
+			int i = n.getIndice();
+			for (Etudiant e : etudiantsInscrits[i]) {
+				System.out.println(e);
+			}
+		}
+		System.out.println("   ---   LISTE DES PERSONNES EN ATTENTE   --");
+		for (Niveau n : Niveau.values()) {
+			System.out.println("\n   ---"+n+"---");
+			int i = n.getIndice();
+			for (Etudiant e : etudiantsEnAttente[i]) {
+				System.out.println(e);
+			}
+		}
+		
+		return "";
 	}
 	
 	
