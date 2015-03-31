@@ -78,7 +78,6 @@ public class RegistreIncriptions {
 
 	}
 	private static void attribuerPlace() {
-<<<<<<< HEAD
 		// TODO Auto-generated method stubSystem.out.println("Son niveau aussi ?");
 		System.out.println("attribuer une place a quel niveau ? :");
 		System.out.println("1 - Debutant \n2 - Intermediaire\n3 - Expert");
@@ -96,10 +95,7 @@ public class RegistreIncriptions {
 		}
 		
 		Etudiant et = inscriptions.attribuerPlace(niveau.getIndice());
-=======
 		// TODO Auto-generated method stub
-		Etudiant et = inscriptions.attribuerPlace();
->>>>>>> refs/heads/master
 		if (et == null) {
 			System.out.println("l'attribution n'a pas pu se faire !");
 		} else {
