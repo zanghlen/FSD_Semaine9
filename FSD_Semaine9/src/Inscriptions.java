@@ -37,27 +37,36 @@ public class Inscriptions {
 	// verifie si l'etudiant se trouve dans la liste d'attente
 	public boolean estEnAttente(Etudiant etudiant){
 		// A COMPLETER
+		return etudiantsEnAttente[etudiant.getNiveau().getIndice()].contains(etudiant);
 	}
 
 	// renvoie false si plus de place
 	// il ne faut pas verifier si l'etudiant est deja present
 	public boolean inscrire(Etudiant etudiant){ 
 
+		// il reste de la place pour une inscription
+		if ( placeRestanteInscrits(etudiant.getNiveau().getIndice()) ) {
+			return etudiantsInscrits[etudiant.getNiveau().getIndice()].add(etudiant);
+		}
+		return false;
 	}
 
 	// renvoie false si l'etudiant n'est pas inscrit
 	// il faut juste supprimer l'etudiant
 	// cette methode ne s'occupe pas d'attribuer une place a un etudiant en attente
 	public boolean desinscrire(Etudiant etudiant){
-
+		return etudiantsInscrits[etudiant.getNiveau().getIndice()].remove(etudiant);
 	}
 
 
 	// il ne faut pas verifier si l'etudiant est deja present
 	public void mettreEnAttente(Etudiant etudiant){
-
+		if (etudiantsEnAttente[etudiant.getNiveau().getIndice()].add(etudiant)) {
+			fileDAttente[etudiant.getNiveau().getIndice()].addLast(etudiant);
+		}
 		
 	}
+	
 
 	//TODO terminer la methode 
 	// renvoie null s’il n’y a pas d’etudiant en attente

@@ -78,8 +78,23 @@ public class RegistreIncriptions {
 
 	}
 	private static void attribuerPlace() {
-		// TODO Auto-generated method stub
-		Etudiant et = inscriptions.attribuerPlace();
+		// TODO Auto-generated method stubSystem.out.println("Son niveau aussi ?");
+		System.out.println("attribuer une place a quel niveau ? :");
+		System.out.println("1 - Debutant \n2 - Intermediaire\n3 - Expert");
+		int choix = sc.nextInt();
+		Inscriptions.Niveau niveau = null ; 
+		switch (choix) {
+		case 1:
+			niveau = Inscriptions.Niveau.DEBUTANT;
+		case 2:
+			niveau = Inscriptions.Niveau.INTERMEDIAIRE;
+		case 3:
+			niveau = Inscriptions.Niveau.EXPERT;
+		default:
+			break;
+		}
+		
+		Etudiant et = inscriptions.attribuerPlace(niveau.getIndice());
 		if (et == null) {
 			System.out.println("l'attribution n'a pas pu se faire !");
 		} else {
