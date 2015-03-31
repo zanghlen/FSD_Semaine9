@@ -37,7 +37,7 @@ public class Inscriptions {
 	public boolean inscrire(Etudiant etudiant){ 
 
 		// il reste de la place pour une inscription
-		if ( etudiantInscrits.size() < nbMaxInscrits ) {
+		if ( placeRestanteInscrits() ) {
 			return etudiantInscrits.add(etudiant);
 		}
 		return false;
@@ -61,18 +61,33 @@ public class Inscriptions {
 	// renvoie null s’il n’y a pas d’etudiant en attente
 	public Etudiant attribuerPlace(){ 
 		// A COMPLETER
+		// contient il ?
 		if (fileDAttente.isEmpty()) {
 			return null;
 		}
+		// je supprime de la file d'attente
 		Etudiant toRemove = fileDAttente.removeFirst();
+		if (!estEnAttente(toRemove)) { // mais est il dans la l'ensemble des gens en attente
+			return null;
+		}
 		
+		if (placeRestanteInscrits()) {
+			retirerFileAttente(toRemove);
+			return toRemove;
+		}
 		return null;
 	}
+
+	private boolean placeRestanteInscrits() {
+		return etudiantInscrits.size() < nbMaxInscrits;
+	}
+	
+	
 	// TODO terminer la methode 
 	// renvoie false si l'etudiant n'est pas en attente
 	public boolean retirerFileAttente(Etudiant etudiant){
 		// A COMPLETER
-		return false;
+		return fileDAttente.remove(etudiant);
 	}
 
 }
