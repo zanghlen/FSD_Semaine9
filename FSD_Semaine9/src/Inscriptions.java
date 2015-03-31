@@ -59,26 +59,42 @@ public class Inscriptions {
 		
 	}
 
+	//TODO terminer la methode 
 	// renvoie null s’il n’y a pas d’etudiant en attente
-	public Etudiant attribuerPlace(){ 
+	public Etudiant attribuerPlace(int niveau){ 
 		// A COMPLETER
+		// contient il ?
+		if (fileDAttente[niveau].isEmpty()) {
+			return null;
+		}
+		// je supprime de la file d'attente
+		Etudiant toRemove = fileDAttente[niveau].removeFirst();
+		if (!estEnAttente(toRemove)) { // mais est il dans la l'ensemble des gens en attente
+			return null;
+		}
+		
+		if (placeRestanteInscrits(niveau)) {
+			retirerFileAttente(toRemove);
+			inscrire(toRemove);
+			return toRemove;
+		} else if (placeRestanteInscrits(niveau)) {
+			 mettreEnAttente(toRemove);
+		}
 		return null;
 	}
 
-	private boolean placeRestanteInscrits() {
-
+	private boolean placeRestanteInscrits(int indice) {
+		return etudiantsInscrits[indice].size() < nbMaxInscrits;
 	}
-
-
+	
+	
+	// TODO terminer la methode 
 	// renvoie false si l'etudiant n'est pas en attente
 	public boolean retirerFileAttente(Etudiant etudiant){
-
+		// A COMPLETER
+		return etudiantsEnAttente[etudiant.getNiveau().getIndice()].remove(etudiant);
 	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-	}
+	
 	
 	public enum Niveau { 
 		DEBUTANT(0), INTERMEDIAIRE(1) , EXPERT(2);
